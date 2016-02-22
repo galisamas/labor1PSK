@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <Resource id="Labor1DataSource" type="javax.sql.DataSource">#Tue Feb 23 00:00:47 EET 2016
+jdbcDriver=org.apache.derby.jdbc.ClientDriver
+password=tomee
+userName=tomee
+jdbcUrl=jdbc\:derby\://localhost\:1527/labor1DB
+</Resource>
+</resources>

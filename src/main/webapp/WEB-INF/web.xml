@@ -21,4 +21,17 @@
     <welcome-file-list>
         <welcome-file>faces/index.xhtml</welcome-file>
     </welcome-file-list>
+    <data-source>
+        <name>java:app/env/Labor1DataSource</name>
+        <class-name>org.apache.derby.jdbc.ClientXADataSource</class-name>
+        <server-name>localhost</server-name>
+        <port-number>1527</port-number>
+        <database-name>labor1DB</database-name>
+        <user>tomee</user>
+        <password>tomee</password>
+        <property>
+            <name>connectionAttributes</name>
+            <value>;create=true</value>
+        </property>
+    </data-source> 
 </web-app>
