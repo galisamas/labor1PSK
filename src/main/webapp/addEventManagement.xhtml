@@ -8,12 +8,20 @@
         <title>Main</title>
     </h:head>
     <h:body>
-        <p:tabMenu activeIndex="#{param.i}">
-            <p:menuitem value="Event" outcome="servicesManagementList" icon="ui-icon-plus"/>
-            <p:menuitem value="Team" outcome="internalPointsManagement" icon="ui-icon-plus"/>
-            <p:menuitem value="Participants" outcome="registrationFormManagement" icon="ui-icon-search"/>
-            </p:menuitem>
-        </p:tabMenu>
+        <h:form>
+            <h:panelGrid columns="2">
+                <p:outputLabel for="title" value="Title:" />
+                <p:inputText id="title" value="#{eventController.event.title}" required="true" />
+
+                <p:outputLabel for="desc" value="Description:" />
+                <p:inputText id="desc" value="#{eventController.event.description}"/>
+
+            </h:panelGrid>
+            
+            <p:commandButton value="Team" action="#{eventController.addTeam()}" icon="ui-icon-plus" >
+                <f:param name="id" value="#{eventController.event.id}" />
+            </p:commandButton>
+        </h:form>
     </h:body>
 </html>
 

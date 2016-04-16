@@ -3,34 +3,29 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package lt.mif.vu.labor;
 
 import java.io.Serializable;
-import java.util.List;
-import java.util.Objects;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
-/**
- *
- * @author Naglis
- */
+
 @Entity
 @Table(name = "EVENT")
 @NamedQueries({
     @NamedQuery(name = "Event.findAll", query = "SELECT e FROM Event e"),
     @NamedQuery(name = "Event.findById", query = "SELECT e FROM Event e WHERE e.id = :id"),
     @NamedQuery(name = "Event.findByTitle", query = "SELECT e FROM Event e WHERE e.title = :title"),
-    @NamedQuery(name = "Event.findByRegistrationNr", query = "SELECT e FROM Event e WHERE e.registrationNr = :registrationNr")})
+    @NamedQuery(name = "Event.findByDescription", query = "SELECT e FROM Event e WHERE e.description = :description")})
 public class Event implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -42,10 +37,9 @@ public class Event implements Serializable {
     @Size(max = 20)
     @Column(name = "TITLE")
     private String title;
-    @Column(name = "REGISTRATION_NR")
-    private Integer registrationNr; // business key
-    @ManyToMany(mappedBy = "eventList")
-    private List<Team> teamList;
+    @Size(max = 1000)
+    @Column(name = "DESCRIPTION")
+    private String description;
 
     public Event() {
     }
@@ -70,52 +64,37 @@ public class Event implements Serializable {
         this.title = title;
     }
 
-    public Integer getRegistrationNr() {
-        return registrationNr;
+    public String getDescription() {
+        return description;
     }
 
-    public void setRegistrationNr(Integer registrationNr) {
-        this.registrationNr = registrationNr;
-    }
-
-    public List<Team> getTeamList() {
-        return teamList;
-    }
-
-    public void setTeamList(List<Team> teamList) {
-        this.teamList = teamList;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 71 * hash + Objects.hashCode(this.registrationNr);
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Event)) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Event other = (Event) obj;
-        if (!Objects.equals(this.registrationNr, other.registrationNr)) {
+        Event other = (Event) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
     }
 
-    
-
     @Override
     public String toString() {
         return "lt.mif.vu.labor.Event[ id=" + id + " ]";
     }
-    
+
 }

@@ -2,18 +2,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Main</title>
     </h:head>
     <h:body>
-        <p:tabMenu>
-            <p:menuitem value="Event" outcome="addEventManagement" icon="ui-icon-plus"/>
-            <p:menuitem value="Team" outcome="addTeamManagement" icon="ui-icon-plus"/>
-            <p:menuitem value="Participants" outcome="searchForParticipantManagement" icon="ui-icon-search"/>
-            </p:menuitem>
-        </p:tabMenu>
+        <h:form>
+            <p:tabMenu>
+                <p:menuitem value="Participant" outcome="addParticipantManagement" icon="ui-icon-plus"/>
+                <p:menuitem value="Event" outcome="addEventManagement" icon="ui-icon-plus"/>
+                <p:menuitem value="Team" outcome="addTeamManagement" icon="ui-icon-plus"/>
+                <p:menuitem value="Participants" outcome="searchForParticipantManagement" icon="ui-icon-search"/>
+                </p:menuitem>
+            </p:tabMenu>
+        </h:form>
     </h:body>
 </html>
 
