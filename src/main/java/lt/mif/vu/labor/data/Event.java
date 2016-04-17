@@ -34,10 +34,10 @@ public class Event implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Integer id;
-    @Size(max = 20)
+    @Size(min=2, max = 20, message = "Must be between 2 and 20 symbols")
     @Column(name = "TITLE")
     private String title;
-    @Size(max = 1000)
+    @Size(max = 1000, message = "Must be up to 1000 symbols")
     @Column(name = "DESCRIPTION")
     private String description;
 

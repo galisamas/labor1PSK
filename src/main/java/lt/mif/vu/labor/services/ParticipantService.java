@@ -20,8 +20,11 @@ public class ParticipantService {
     @PersistenceContext
     private EntityManager em;
     
+    public void addParticipant(Participant participant){
+        em.persist(participant);
+    }
+    
     public List<Participant> getParticipants() {
         return em.createNamedQuery("Participant.findAll").getResultList();
     }
-
 }

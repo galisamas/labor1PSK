@@ -6,27 +6,24 @@
 
 package lt.mif.vu.labor.services;
 
-import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import lt.mif.vu.labor.data.Participant;
-import lt.mif.vu.labor.data.Team;
+import lt.mif.vu.labor.data.Event;
 
 @Named
 @Stateless
-public class TeamService {
-    
+public class EventService {
+
     @PersistenceContext
     private EntityManager em;
     
-    public void addTeam(Team team){
-        em.persist(team);
+    public void addEvent(Event event){
+        em.persist(event);
     }
     
-    public Team getTeam(int id){
-        return (Team) em.createNamedQuery("Team.findById").setParameter("id", id).getSingleResult();
+    public Event getEvent(int id){
+        return (Event) em.createNamedQuery("Event.findById").setParameter("id", id).getSingleResult();
     }
-
 }

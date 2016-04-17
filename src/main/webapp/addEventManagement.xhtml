@@ -9,20 +9,23 @@
     </h:head>
     <h:body>
         <h:form>
-<!--            <h:panelGrid columns="2">
+            
+            <h:panelGrid id="panel" columns="3">
                 <p:outputLabel for="title" value="Title:" />
-                <p:inputText id="title" value="{eventController.event.title}" required="true" />
+                <p:inputText id="title" value="#{eventController.event.title}" required="true" />
+                <p:message for="title" />
 
                 <p:outputLabel for="desc" value="Description:" />
-                <p:inputText id="desc" value="{eventController.event.description}"/>
+                <p:inputText id="desc" value="#{eventController.event.description}"/>
+                <p:message for="desc" />
 
             </h:panelGrid>
             
-            <p:commandButton value="Team" action="{eventController.addTeam()}" icon="ui-icon-plus" >
-                <f:param name="id" value="{eventController.event.id}" />
+            <p:commandButton value="Team to This Event" action="#{eventController.addTeam()}" icon="ui-icon-plus"  validateClient="true"  update="panel">
+                <f:param name="id" value="#{eventController.event.id}" />
             </p:commandButton>
-            <p:commandButton value="Submit" action="{eventController.addEvent()}" />
-            <p:button value="Cancel" outcome="index"/>-->
+            <p:commandButton value="Submit" action="#{eventController.addEvent()}"  validateClient="true"  update="panel" />
+            <p:button value="Cancel" outcome="index"/>
         </h:form>
     </h:body>
 </html>

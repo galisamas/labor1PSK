@@ -9,6 +9,7 @@
     </h:head>
     <h:body>
         <h:form>
+            
             <p:dataTable var="participant" value="#{searchController.participants}" stickyHeader="true"
                          selectionMode="single" selection="#{searchController.selectedParticipant}" rowKey="#{participant.id}">
                 <f:facet name="header">

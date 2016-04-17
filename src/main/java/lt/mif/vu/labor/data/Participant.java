@@ -40,13 +40,13 @@ public class Participant implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Integer id;
-    @Size(max = 20)
+    @Size(min=2, max = 20, message = "Must be between 2 and 20 symbols")
     @Column(name = "NICKNAME")
     private String nickname; // business key
-    @Size(max = 20)
+    @Size(min=2, max = 20, message = "Must be between 2 and 20 symbols")
     @Column(name = "NAME_P")
     private String name;
-    @Size(max = 20)
+    @Size(min=0, max = 20, message = "Must be between 0 and 20 symbols")
     @Column(name = "SURNAME")
     private String surname;
     @JoinColumn(name = "TEAM_ID", referencedColumnName = "ID")

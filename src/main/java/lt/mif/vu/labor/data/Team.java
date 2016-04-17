@@ -21,6 +21,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 
 /**
@@ -42,9 +44,10 @@ public class Team implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Integer id;
-    @Size(max = 20)
+    @Size(min=2, max = 20, message = "Must be between 2 and 20 symbols")
     @Column(name = "TITLE")
     private String title; // business key
+    @Min(0) @Max(5)
     @Column(name = "MEMBER_COUNT")
     private Integer memberCount;
     @JoinTable(name = "EVENT_TEAM", joinColumns = {
