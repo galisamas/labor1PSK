@@ -5,7 +5,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Main</title>
+        <title>Search</title>
     </h:head>
     <h:body>
         <h:form>
@@ -14,7 +14,7 @@
                 <f:facet name="header">
                     Select User
                 </f:facet>
-                <p:ajax event="rowSelect" listener="#{searchController.onRowSelect()}" update=":form:msgs" />
+                <p:ajax event="rowSelect" listener="#{searchController.onRowSelect()}" update=":dialog"/>
                 <p:column headerText="Nickname">
                     <h:outputText value="#{participant.nickname}" />
                 </p:column>
@@ -26,10 +26,11 @@
                 </p:column>
             </p:dataTable>
             
-            <p:dialog header="Team name" widgetVar="dlg2" modal="true" height="100" >
-                <h:outputText value="#{searchController.team.title}" />
-            </p:dialog>   
+            
         </h:form>
+        <p:dialog id="dialog" header="Team name" modal="true" height="50" width="300" visible="#{searchController.showDialog}">
+            <h:outputText value="#{searchController.selectedParticipant.nickname} belongs to #{searchController.team.title}" />
+        </p:dialog>  
     </h:body>
 </html>
 

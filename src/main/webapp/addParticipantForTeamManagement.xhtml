@@ -5,25 +5,25 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Add Participant</title>
+        <title>Add Participant For Team</title>
     </h:head>
     <h:body>
-        <h:form>
+<!--        <h:form>
             <h:panelGrid columns="2">
                 <p:outputLabel for="nickname" value="Nickname:" />
-                <p:inputText id="nickname" value="#{teamController.participant.nickname}" required="true" />
+                <p:inputText id="nickname" value="{teamController.participant.nickname}" required="true" />
 
                 <p:outputLabel for="name" value="Name:" />
-                <p:inputText id="name" value="#{teamController.participant.name}" required="true" />
+                <p:inputText id="name" value="{teamController.participant.name}" required="true" />
 
                 <p:outputLabel for="surname" value="Surname:" />
-                <p:inputText id="surname" value="#{teamController.participant.surname}"/>
+                <p:inputText id="surname" value="{teamController.participant.surname}"/>
 
             </h:panelGrid>
-            <p:commandButton value="Submit" action="#{teamController.addParticipant()}" />
-            <p:commandButton value="Add More" action="#{teamController.addMember()}"/>
-            <p:commandButton value="Cancel" action="#{teamController.cancel()}"/>
-        </h:form>
+            <p:commandButton value="Submit" action="{teamController.addParticipant()}" />
+            <p:commandButton value="Add More" action="{teamController.addMember()}"/>
+            <p:commandButton value="Cancel" action="{teamController.cancel()}"/>
+        </h:form>-->
     </h:body>
 </html>
 

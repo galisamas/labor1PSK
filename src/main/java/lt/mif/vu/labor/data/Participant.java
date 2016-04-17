@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lt.mif.vu.labor;
+package lt.mif.vu.labor.data;
 
 import java.io.Serializable;
 import java.util.Objects;

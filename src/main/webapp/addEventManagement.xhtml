@@ -5,22 +5,24 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Main</title>
+        <title>Add Event</title>
     </h:head>
     <h:body>
         <h:form>
-            <h:panelGrid columns="2">
+<!--            <h:panelGrid columns="2">
                 <p:outputLabel for="title" value="Title:" />
-                <p:inputText id="title" value="#{eventController.event.title}" required="true" />
+                <p:inputText id="title" value="{eventController.event.title}" required="true" />
 
                 <p:outputLabel for="desc" value="Description:" />
-                <p:inputText id="desc" value="#{eventController.event.description}"/>
+                <p:inputText id="desc" value="{eventController.event.description}"/>
 
             </h:panelGrid>
             
-            <p:commandButton value="Team" action="#{eventController.addTeam()}" icon="ui-icon-plus" >
-                <f:param name="id" value="#{eventController.event.id}" />
+            <p:commandButton value="Team" action="{eventController.addTeam()}" icon="ui-icon-plus" >
+                <f:param name="id" value="{eventController.event.id}" />
             </p:commandButton>
+            <p:commandButton value="Submit" action="{eventController.addEvent()}" />
+            <p:button value="Cancel" outcome="index"/>-->
         </h:form>
     </h:body>
 </html>

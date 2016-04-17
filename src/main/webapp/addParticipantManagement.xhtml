@@ -9,26 +9,25 @@
     </h:head>
     <h:body>
         <h:form>
-            <h:panelGrid columns="2">
+<!--            <h:panelGrid columns="2">
                 <p:outputLabel for="nickname" value="Nickname:" />
-                <p:inputText id="nickname" value="#{participantController.participant.nickname}" required="true" />
+                <p:inputText id="nickname" value="{participantController.participant.nickname}" required="true" />
 
                 <p:outputLabel for="name" value="Name:" />
-                <p:inputText id="name" value="#{participantController.participant.name}" required="true" />
+                <p:inputText id="name" value="{participantController.participant.name}" required="true" />
 
                 <p:outputLabel for="surname" value="Surname:" />
-                <p:inputText id="surname" value="#{participantController.participant.surname}"/>
+                <p:inputText id="surname" value="{participantController.participant.surname}"/>
 
 
-                <p:outputLabel id="label" for="basic" value="Basic:" rendered="#{participantController.canRender}"/>
-                <p:selectOneListbox id="basic" value="#{participantController.teams}" var="team" rendered="#{participantController.canRender}">
-                    <f:selectItems value="#{team.title}" />
+                <p:outputLabel id="label" for="basic" value="Basic:" rendered="{participantController.canRender}"/>
+                <p:selectOneListbox id="basic" value="{participantController.teams}" var="team" rendered="{participantController.canRender}">
+                    <f:selectItems value="{team.title}" />
                 </p:selectOneListbox>
 
             </h:panelGrid>
-            <p:commandButton value="Submit" action="#{participantController.addParticipant()}" />
-            <p:commandButton value="Add Team to this Participant" action="#{participantController.RenderTeams()}" update="basic label" />
-            <p:commandButton value="Cancel" action="#{participantController.cancel()}"/>
+            <p:commandButton value="Submit" action="{participantController.addParticipant()}" />
+            <p:commandButton value="Add Team to this Participant" action="{participantController.RenderTeams()}" update="basic label" />-->
             
         </h:form>
     </h:body>
