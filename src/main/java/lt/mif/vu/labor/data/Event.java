@@ -7,15 +7,18 @@
 package lt.mif.vu.labor.data;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 
@@ -25,8 +28,12 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Event.findAll", query = "SELECT e FROM Event e"),
     @NamedQuery(name = "Event.findById", query = "SELECT e FROM Event e WHERE e.id = :id"),
     @NamedQuery(name = "Event.findByTitle", query = "SELECT e FROM Event e WHERE e.title = :title"),
-    @NamedQuery(name = "Event.findByDescription", query = "SELECT e FROM Event e WHERE e.description = :description")})
+    @NamedQuery(name = "Event.findByDescription", query = "SELECT e FROM Event e WHERE e.description = :description"),
+    @NamedQuery(name = "Event.findByHaveTeams", query = "SELECT e FROM Event e WHERE e.haveTeams = :haveTeams")})
 public class Event implements Serializable {
+
+    @ManyToMany(mappedBy = "eventList")
+    private List<Team> teamList;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -34,18 +41,27 @@ public class Event implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Integer id;
-    @Size(min=2, max = 20, message = "Must be between 2 and 20 symbols")
+    @Size(max = 20)
     @Column(name = "TITLE")
     private String title;
-    @Size(max = 1000, message = "Must be up to 1000 symbols")
+    @Size(max = 1000)
     @Column(name = "DESCRIPTION")
     private String description;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "HAVE_TEAMS")
+    private Boolean haveTeams;
 
     public Event() {
     }
 
     public Event(Integer id) {
         this.id = id;
+    }
+
+    public Event(Integer id, Boolean haveTeams) {
+        this.id = id;
+        this.haveTeams = haveTeams;
     }
 
     public Integer getId() {
@@ -72,6 +88,14 @@ public class Event implements Serializable {
         this.description = description;
     }
 
+    public Boolean getHaveTeams() {
+        return haveTeams;
+    }
+
+    public void setHaveTeams(Boolean haveTeams) {
+        this.haveTeams = haveTeams;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -94,7 +118,15 @@ public class Event implements Serializable {
 
     @Override
     public String toString() {
-        return "lt.mif.vu.labor.Event[ id=" + id + " ]";
+        return "lt.mif.vu.labor.data.Event[ id=" + id + " ]";
+    }
+
+    public List<Team> getTeamList() {
+        return teamList;
+    }
+
+    public void setTeamList(List<Team> teamList) {
+        this.teamList = teamList;
     }
 
 }

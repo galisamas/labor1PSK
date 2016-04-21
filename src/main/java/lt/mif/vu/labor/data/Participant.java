@@ -30,6 +30,7 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Participant.findAll", query = "SELECT p FROM Participant p"),
     @NamedQuery(name = "Participant.findById", query = "SELECT p FROM Participant p WHERE p.id = :id"),
     @NamedQuery(name = "Participant.findByName", query = "SELECT p FROM Participant p WHERE p.name = :name"),
+    @NamedQuery(name = "Participant.findByNickname", query = "SELECT p FROM Participant p WHERE p.nickname = :nickname"),
     @NamedQuery(name = "Participant.findBySurname", query = "SELECT p FROM Participant p WHERE p.surname = :surname")})
 public class Participant implements Serializable {
 

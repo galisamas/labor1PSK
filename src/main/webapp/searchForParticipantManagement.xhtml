@@ -30,7 +30,7 @@
             
         </h:form>
         <p:dialog id="dialog" header="Team name" modal="true" height="50" width="300" visible="#{searchController.showDialog}">
-            <h:outputText value="#{searchController.selectedParticipant.nickname} belongs to #{searchController.team.title}" />
+            <h:outputText value="#{searchController.selectedParticipant.nickname} belongs to #{searchController.teamName}" />
         </p:dialog>  
     </h:body>
 </html>

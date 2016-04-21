@@ -42,12 +42,16 @@ public class SearchController {
     
     @Getter @Setter private boolean showDialog;
     
+    @Getter @Setter private String teamName;
+    
     public void onRowSelect(){
-        team = teamService.getTeam(selectedParticipant.getTeamId().getId());
+        if(selectedParticipant.getTeamId() != null){
+            team = selectedParticipant.getTeamId();
+            teamName = team.getTitle();
+        }else{
+            teamName = "no team";
+        }
         showDialog = true;
-//        Map<String, Object> options = new HashMap<>();
-//        options.put("widgetVar", "dlg1");
-//        RequestContext.getCurrentInstance().openDialog("dialog1.xhtml", options, null);
     }
     
     @PostConstruct

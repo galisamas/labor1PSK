@@ -10,8 +10,6 @@ import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateful;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
 import javax.faces.context.FacesContext;
@@ -44,9 +42,6 @@ public class TeamController {
     @Inject
     private TeamService teamService;
     
-//    @Inject
-//    private EventService eventService;
-    
     @Inject
     private ParticipantService participantService;
     
@@ -54,12 +49,10 @@ public class TeamController {
     
     @Getter @Setter private Team team = new Team();
     
-//    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public String addTeam(){
         if(!conversation.isTransient())
             return null;
         conversation.begin();
-        team.setMemberCount(0);
         return "addParticipantForTeamManagement?faces-redirect=true";
     }
     
@@ -67,7 +60,6 @@ public class TeamController {
         if(conversation.isTransient())
             return null;
         participant.setTeamId(team);
-        team.setMemberCount(team.getMemberCount() + 1);
         participantService.addParticipant(participant);
         participant = new Participant();
         return "addParticipantForTeamManagement?faces-redirect=true";
@@ -78,7 +70,6 @@ public class TeamController {
             return null;
         if(!participant.getName().isEmpty()){
             participant.setTeamId(team);
-            team.setMemberCount(team.getMemberCount() + 1);
             participantService.addParticipant(participant);
         }
         teamService.addTeam(team);
@@ -93,17 +84,4 @@ public class TeamController {
         conversation.end();
         return "index?faces-redirect=true";
     }
-    
-//    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-//    @PostConstruct
-//    public void init(){
-//        Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-//        String id = params.get("id");
-//        if (id != null){
-//            List<Event> list = team.getEventList();
-//            Event event = eventService.getEvent(Integer.valueOf(id));
-//            list.add(event);
-//            team.setEventList(list);
-//        }
-//    }
 }

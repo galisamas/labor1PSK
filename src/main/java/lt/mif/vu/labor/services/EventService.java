@@ -6,7 +6,10 @@
 
 package lt.mif.vu.labor.services;
 
+import java.util.List;
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -19,11 +22,21 @@ public class EventService {
     @PersistenceContext
     private EntityManager em;
     
-    public void addEvent(Event event){
-        em.persist(event);
-    }
     
     public Event getEvent(int id){
         return (Event) em.createNamedQuery("Event.findById").setParameter("id", id).getSingleResult();
+    }
+    
+    public Event getEventByTitle(String title){
+        return (Event) em.createNamedQuery("Event.findByTitle").setParameter("title", title).getSingleResult();
+    }
+
+    public List<Event> getEvents() {
+        return em.createNamedQuery("Event.findAll").getResultList();
+    }
+    
+    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
+    public Event updateEvent(Event selectedEvent) {
+        return em.merge(selectedEvent);
     }
 }

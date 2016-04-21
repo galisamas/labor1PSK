@@ -34,8 +34,7 @@ import javax.validation.constraints.Size;
 @NamedQueries({
     @NamedQuery(name = "Team.findAll", query = "SELECT t FROM Team t"),
     @NamedQuery(name = "Team.findById", query = "SELECT t FROM Team t WHERE t.id = :id"),
-    @NamedQuery(name = "Team.findByTitle", query = "SELECT t FROM Team t WHERE t.title = :title"),
-    @NamedQuery(name = "Team.findByMemberCount", query = "SELECT t FROM Team t WHERE t.memberCount = :memberCount")})
+    @NamedQuery(name = "Team.findByTitle", query = "SELECT t FROM Team t WHERE t.title = :title")})
 public class Team implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -47,9 +46,6 @@ public class Team implements Serializable {
     @Size(min=2, max = 20, message = "Must be between 2 and 20 symbols")
     @Column(name = "TITLE")
     private String title; // business key
-    @Min(0) @Max(5)
-    @Column(name = "MEMBER_COUNT")
-    private Integer memberCount;
     @JoinTable(name = "EVENT_TEAM", joinColumns = {
         @JoinColumn(name = "TEAM_ID", referencedColumnName = "ID")}, inverseJoinColumns = {
         @JoinColumn(name = "EVENT_ID", referencedColumnName = "ID")})
@@ -81,14 +77,6 @@ public class Team implements Serializable {
         this.title = title;
     }
 
-    public Integer getMemberCount() {
-        return memberCount;
-    }
-
-    public void setMemberCount(Integer memberCount) {
-        this.memberCount = memberCount;
-    }
-
     public List<Event> getEventList() {
         return eventList;
     }
@@ -107,8 +95,8 @@ public class Team implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 83 * hash + Objects.hashCode(this.title);
+        int hash = 5;
+        hash = 29 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -124,13 +112,11 @@ public class Team implements Serializable {
             return false;
         }
         final Team other = (Team) obj;
-        if (!Objects.equals(this.title, other.title)) {
+        if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return true;
     }
-
-    
 
     @Override
     public String toString() {

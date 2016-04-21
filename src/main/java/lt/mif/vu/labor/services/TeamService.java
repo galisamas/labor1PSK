@@ -28,5 +28,19 @@ public class TeamService {
     public Team getTeam(int id){
         return (Team) em.createNamedQuery("Team.findById").setParameter("id", id).getSingleResult();
     }
+    
+    public Team getTeamByTitle(String title){
+        return (Team) em.createNamedQuery("Team.findByTitle").setParameter("title", title).getSingleResult();
+    }
+
+    public List<Team> getTeams() {
+        return em.createNamedQuery("Team.findAll").getResultList();
+    }
+
+    public Team updateTeam(Team selectedTeam) {
+        return em.merge(selectedTeam);
+    }
+    
+    
 
 }

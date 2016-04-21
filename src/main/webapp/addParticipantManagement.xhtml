@@ -9,27 +9,41 @@
     </h:head>
     <h:body>
         <h:form>
-            
-<!--            <h:panelGrid columns="2">
+            <p:messages />
+            <h:panelGrid id="panel" columns="3">
                 <p:outputLabel for="nickname" value="Nickname:" />
-                <p:inputText id="nickname" value="{participantController.participant.nickname}" required="true" />
+                <p:inputText id="nickname" value="#{participantController.participant.nickname}" required="true" />
+                <p:message for="nickname" />
 
                 <p:outputLabel for="name" value="Name:" />
-                <p:inputText id="name" value="{participantController.participant.name}" required="true" />
+                <p:inputText id="name" value="#{participantController.participant.name}" required="true" />
+                <p:message for="name" />
 
                 <p:outputLabel for="surname" value="Surname:" />
-                <p:inputText id="surname" value="{participantController.participant.surname}"/>
+                <p:inputText id="surname" value="#{participantController.participant.surname}"/>
+                <p:message for="surname" />
 
 
-                <p:outputLabel id="label" for="basic" value="Basic:" rendered="{participantController.canRender}"/>
-                <p:selectOneListbox id="basic" value="{participantController.teams}" var="team" rendered="{participantController.canRender}">
-                    <f:selectItems value="{team.title}" />
-                </p:selectOneListbox>
+                <p:outputLabel for="teams" value="Team:" rendered="#{participantController.canRender}"/>
+                <p:selectOneMenu id="teams" value="#{participantController.selectedTeam}" 
+                                 rendered="#{participantController.canRender}">
+                    <f:selectItems value="#{participantController.teams}" />
+                </p:selectOneMenu>
+                <p:message for="teams" rendered="#{participantController.canRender}"/>
+                
+                <p:outputLabel for="events" value="Event:" rendered="#{participantController.canRender}"/>
+                <p:selectOneMenu id="events" value="#{participantController.selectedEvent}" 
+                                 rendered="#{participantController.canRender}">
+                    <f:selectItems value="#{participantController.events}" />
+                </p:selectOneMenu>
+                <p:message for="events" rendered="#{participantController.canRender}"/>
 
+                <p:commandButton value="Submit" action="#{participantController.addParticipant()}" update="panel" />
+                
+                <p:commandButton value="Add Team to this Participant" actionListener="#{participantController.renderTE()}" immediate="true" 
+                                 rendered="#{!participantController.canRender}" update="panel" />
             </h:panelGrid>
-            <p:commandButton value="Submit" action="{participantController.addParticipant()}" />
-            <p:commandButton value="Add Team to this Participant" action="{participantController.RenderTeams()}" update="basic label" />-->
-            
+
         </h:form>
     </h:body>
 </html>

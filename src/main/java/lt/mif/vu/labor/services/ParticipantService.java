@@ -20,11 +20,25 @@ public class ParticipantService {
     @PersistenceContext
     private EntityManager em;
     
-    public void addParticipant(Participant participant){
-        em.persist(participant);
+    public boolean addParticipant(Participant participant){
+        try{
+            em.persist(participant);
+            em.flush();
+        }catch(Exception ex){
+            return false;
+        }
+        return true;
     }
     
     public List<Participant> getParticipants() {
         return em.createNamedQuery("Participant.findAll").getResultList();
+    }
+
+    public Participant getParticipantByNickname(String nickname) {
+        return (Participant) em.createNamedQuery("Participant.findByNickname").setParameter("nickname", nickname).getSingleResult();
+    }
+
+    public void updateParticipant(Participant participant) {
+        em.merge(participant);
     }
 }
