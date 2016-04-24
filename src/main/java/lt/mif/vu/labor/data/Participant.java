@@ -18,6 +18,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Version;
 import javax.validation.constraints.Size;
 
 /**
@@ -34,7 +35,10 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Participant.findBySurname", query = "SELECT p FROM Participant p WHERE p.surname = :surname")})
 public class Participant implements Serializable {
 
-
+    
+    @Version
+    private int optLockVersion;
+    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

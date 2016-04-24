@@ -21,6 +21,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Version;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
@@ -36,7 +37,10 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Team.findById", query = "SELECT t FROM Team t WHERE t.id = :id"),
     @NamedQuery(name = "Team.findByTitle", query = "SELECT t FROM Team t WHERE t.title = :title")})
 public class Team implements Serializable {
-
+    
+    @Version
+    private int optLockVersion;
+    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

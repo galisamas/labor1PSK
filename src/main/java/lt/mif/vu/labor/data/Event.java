@@ -18,6 +18,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -34,6 +35,9 @@ public class Event implements Serializable {
 
     @ManyToMany(mappedBy = "eventList")
     private List<Team> teamList;
+    
+    @Version
+    private int optLockVersion;
 
     private static final long serialVersionUID = 1L;
     @Id
