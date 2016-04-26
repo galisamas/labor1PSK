@@ -33,11 +33,15 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Event.findByHaveTeams", query = "SELECT e FROM Event e WHERE e.haveTeams = :haveTeams")})
 public class Event implements Serializable {
 
+    @Version
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "OPTLOCKVERSION")
+    private int optLockVersion;
+
     @ManyToMany(mappedBy = "eventList")
     private List<Team> teamList;
     
-    @Version
-    private int optLockVersion;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -131,6 +135,14 @@ public class Event implements Serializable {
 
     public void setTeamList(List<Team> teamList) {
         this.teamList = teamList;
+    }
+
+    public int getOptLockVersion() {
+        return optLockVersion;
+    }
+
+    public void setOptLockVersion(int optLockVersion) {
+        this.optLockVersion = optLockVersion;
     }
 
 }

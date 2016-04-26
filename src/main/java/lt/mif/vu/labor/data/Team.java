@@ -24,6 +24,7 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
@@ -37,8 +38,11 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Team.findById", query = "SELECT t FROM Team t WHERE t.id = :id"),
     @NamedQuery(name = "Team.findByTitle", query = "SELECT t FROM Team t WHERE t.title = :title")})
 public class Team implements Serializable {
-    
+
     @Version
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "OPTLOCKVERSION")
     private int optLockVersion;
     
     private static final long serialVersionUID = 1L;
@@ -125,6 +129,14 @@ public class Team implements Serializable {
     @Override
     public String toString() {
         return "lt.mif.vu.labor.Team[ id=" + id + " ]";
+    }
+
+    public int getOptLockVersion() {
+        return optLockVersion;
+    }
+
+    public void setOptLockVersion(int optLockVersion) {
+        this.optLockVersion = optLockVersion;
     }
     
 }
